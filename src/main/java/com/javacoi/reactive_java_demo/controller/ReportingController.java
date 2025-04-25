@@ -10,6 +10,7 @@ public class ReportingController {
 
     @GetMapping(path = "/inventory")
     public String getInventoryReport(){
+        // TODO - make call to service to get report data. Return data as JSON
         return "Test Inventory Report";
     }
 
