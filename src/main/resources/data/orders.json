@@ -1,0 +1,14 @@
+[
+  {
+    "OrderNumber": "99990001",
+    "customerId": "12345",
+    "orderItems": [
+      {
+        "sku": "0000-111-222",
+        "quantity": 2,
+        "totalAmount": 29.98
+      }
+    ],
+    "orderDate": ""
+  }
+]
