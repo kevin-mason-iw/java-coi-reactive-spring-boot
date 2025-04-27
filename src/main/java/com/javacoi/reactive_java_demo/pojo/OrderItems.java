@@ -1,4 +1,4 @@
 package com.javacoi.reactive_java_demo.pojo;
 
-public record OrderItems(String sku, int quantity, double totalAmount) {
+public record OrderItems(String sku, Double unitPrice, int quantity, double total) {
 }

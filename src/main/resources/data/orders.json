@@ -6,9 +6,11 @@
       {
         "sku": "0000-111-222",
         "quantity": 2,
-        "totalAmount": 29.98
+        "unitPrice": 19.99,
+        "total": 39.98
       }
     ],
-    "orderDate": ""
+    "orderDate": "",
+    "totalAmount": 39.98
   }
 ]

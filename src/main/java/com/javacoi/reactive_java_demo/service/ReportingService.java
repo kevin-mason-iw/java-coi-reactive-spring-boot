@@ -4,13 +4,15 @@ import com.javacoi.reactive_java_demo.client.CustomerClient;
 import com.javacoi.reactive_java_demo.client.InventoryClient;
 import com.javacoi.reactive_java_demo.client.OrderClient;
 import com.javacoi.reactive_java_demo.client.ProductClient;
-import com.javacoi.reactive_java_demo.model.ManagementReport;
-import com.javacoi.reactive_java_demo.pojo.Customer;
-import com.javacoi.reactive_java_demo.pojo.Inventory;
-import com.javacoi.reactive_java_demo.pojo.Product;
+import com.javacoi.reactive_java_demo.model.Sales;
+import com.javacoi.reactive_java_demo.model.SalesReport;
+import com.javacoi.reactive_java_demo.pojo.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ReportingService {
@@ -37,13 +39,38 @@ public class ReportingService {
         return s;
     }
 
-    public String buildSalesReport(){
+    public SalesReport buildSalesReport(){
         // TODO - build sales report to detail what the top sellers are, include total sold, product name, total revenue
-        Product product = productClient.getProduct("ABC-1234");
         // TODO - Iterate through all orders and order by the SKU with highest total revenue
-        // TODO - Iterate through new list and get the product title for each SKU
+        Map<String, Integer> productSales = new HashMap<>();
+        List<Order> orders = orderClient.getOrders();
+        for (Order order : orders){
+            for (OrderItems orderItem: order.orderItems()){
+                String sku = orderItem.sku();
+                Inventory inventory = inventoryClient.getInventory(sku);
+                String productId = inventory.productId();
+                if (productSales.containsKey(productId)){
+                    Integer currentValue = productSales.get(productId);
+                    Integer newValue = currentValue + orderItem.quantity();
+                    productSales.replace(productId, newValue);
+                } else {
+                    productSales.put(productId, orderItem.quantity());
+                }
+            }
+        }
         // TODO - build SalesReport object
-        return product.title();
+        List<Sales> salesList = new ArrayList<>();
+        // TODO - Iterate through new list and get the product title for each SKU
+        for (Map.Entry<String, Integer> productSale : productSales.entrySet()) {
+            String productId = productSale.getKey();
+            Integer totalSold = productSale.getValue();
+
+            Product product = productClient.getProduct(productId);
+            Double totalSales = product.price() * totalSold;
+            Sales sales = new Sales(productId, product.title(), totalSold, totalSales);
+            salesList.add(sales);
+        }
+        return new SalesReport(salesList);
     }
 
     public String buildInventoryReport(){
