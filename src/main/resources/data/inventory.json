@@ -1,7 +1,252 @@
 [
   {
-    "sku": "0000-111-222",
-    "productId": "ABC-1234",
+    "sku": "5810-213-479",
+    "productId": "HGS-1001",
+    "stockAmount": 32
+  },
+  {
+    "sku": "4872-671-845",
+    "productId": "HGS-1002",
+    "stockAmount": 88
+  },
+  {
+    "sku": "2371-548-926",
+    "productId": "HGS-1003",
+    "stockAmount": 11
+  },
+  {
+    "sku": "1528-305-782",
+    "productId": "HGS-1004",
+    "stockAmount": 45
+  },
+  {
+    "sku": "6114-927-313",
+    "productId": "HGS-1005",
+    "stockAmount": 63
+  },
+  {
+    "sku": "7891-442-198",
+    "productId": "HGS-1006",
+    "stockAmount": 27
+  },
+  {
+    "sku": "9012-880-772",
+    "productId": "HGS-1007",
+    "stockAmount": 74
+  },
+  {
+    "sku": "6148-375-624",
+    "productId": "HGS-1008",
+    "stockAmount": 49
+  },
+  {
+    "sku": "2539-728-147",
+    "productId": "HGS-1009",
+    "stockAmount": 59
+  },
+  {
+    "sku": "4378-319-590",
+    "productId": "HGS-1010",
+    "stockAmount": 6
+  },
+  {
+    "sku": "1807-614-297",
+    "productId": "HGS-1011",
+    "stockAmount": 81
+  },
+  {
+    "sku": "7210-435-788",
+    "productId": "HGS-1012",
+    "stockAmount": 25
+  },
+  {
+    "sku": "8904-623-507",
+    "productId": "HGS-1013",
+    "stockAmount": 40
+  },
+  {
+    "sku": "6351-897-237",
+    "productId": "HGS-1014",
+    "stockAmount": 58
+  },
+  {
+    "sku": "5124-709-315",
+    "productId": "HGS-1015",
+    "stockAmount": 7
+  },
+  {
+    "sku": "7581-238-907",
+    "productId": "HGS-1016",
+    "stockAmount": 98
+  },
+  {
+    "sku": "3962-541-821",
+    "productId": "HGS-1017",
+    "stockAmount": 36
+  },
+  {
+    "sku": "2847-125-674",
+    "productId": "HGS-1018",
+    "stockAmount": 52
+  },
+  {
+    "sku": "5012-840-967",
+    "productId": "HGS-1019",
+    "stockAmount": 44
+  },
+  {
+    "sku": "6402-983-105",
+    "productId": "HGS-1020",
+    "stockAmount": 71
+  },
+  {
+    "sku": "7910-210-460",
+    "productId": "HGS-1021",
+    "stockAmount": 2
+  },
+  {
+    "sku": "1083-476-821",
+    "productId": "HGS-1022",
+    "stockAmount": 20
+  },
+  {
+    "sku": "3402-681-492",
+    "productId": "HGS-1023",
+    "stockAmount": 65
+  },
+  {
+    "sku": "1507-248-716",
+    "productId": "HGS-1024",
+    "stockAmount": 80
+  },
+  {
+    "sku": "2703-546-392",
+    "productId": "HGS-1025",
+    "stockAmount": 23
+  },
+  {
+    "sku": "9124-835-107",
+    "productId": "HGS-1026",
+    "stockAmount": 33
+  },
+  {
+    "sku": "6712-438-620",
+    "productId": "HGS-1027",
+    "stockAmount": 77
+  },
+  {
+    "sku": "8910-164-378",
+    "productId": "HGS-1028",
+    "stockAmount": 4
+  },
+  {
+    "sku": "4802-947-286",
+    "productId": "HGS-1029",
+    "stockAmount": 9
+  },
+  {
+    "sku": "7361-825-940",
+    "productId": "HGS-1030",
+    "stockAmount": 55
+  },
+  {
+    "sku": "5482-361-279",
+    "productId": "HGS-1031",
+    "stockAmount": 61
+  },
+  {
+    "sku": "1397-420-865",
+    "productId": "HGS-1032",
+    "stockAmount": 83
+  },
+  {
+    "sku": "4815-906-712",
+    "productId": "HGS-1033",
+    "stockAmount": 48
+  },
+  {
+    "sku": "2678-150-894",
+    "productId": "HGS-1034",
+    "stockAmount": 96
+  },
+  {
+    "sku": "8173-290-745",
+    "productId": "HGS-1035",
+    "stockAmount": 26
+  },
+  {
+    "sku": "6825-473-182",
+    "productId": "HGS-1036",
+    "stockAmount": 13
+  },
+  {
+    "sku": "1042-508-369",
+    "productId": "HGS-1037",
+    "stockAmount": 72
+  },
+  {
+    "sku": "3901-762-418",
+    "productId": "HGS-1038",
+    "stockAmount": 90
+  },
+  {
+    "sku": "6582-320-874",
+    "productId": "HGS-1039",
+    "stockAmount": 41
+  },
+  {
+    "sku": "2795-450-613",
+    "productId": "HGS-1040",
+    "stockAmount": 15
+  },
+  {
+    "sku": "4708-295-370",
+    "productId": "HGS-1041",
+    "stockAmount": 68
+  },
+  {
+    "sku": "6710-198-243",
+    "productId": "HGS-1042",
+    "stockAmount": 37
+  },
+  {
+    "sku": "5409-732-851",
+    "productId": "HGS-1043",
     "stockAmount": 50
+  },
+  {
+    "sku": "3702-184-692",
+    "productId": "HGS-1044",
+    "stockAmount": 94
+  },
+  {
+    "sku": "4892-659-731",
+    "productId": "HGS-1045",
+    "stockAmount": 17
+  },
+  {
+    "sku": "1290-578-420",
+    "productId": "HGS-1046",
+    "stockAmount": 5
+  },
+  {
+    "sku": "6817-491-263",
+    "productId": "HGS-1047",
+    "stockAmount": 53
+  },
+  {
+    "sku": "3508-196-584",
+    "productId": "HGS-1048",
+    "stockAmount": 78
+  },
+  {
+    "sku": "2089-732-416",
+    "productId": "HGS-1049",
+    "stockAmount": 66
+  },
+  {
+    "sku": "5894-607-139",
+    "productId": "HGS-1050",
+    "stockAmount": 29
   }
 ]

@@ -1,9 +1,302 @@
 [
   {
-    "productId": "ABC-1234",
-    "title": "Photo Frame",
+    "productId": "HGS-1001",
+    "title": "Rustic Wall Clock",
+    "price": 45.99,
+    "description": "Vintage style wall clock with rustic finish."
+  },
+  {
+    "productId": "HGS-1002",
+    "title": "Ceramic Vase Set",
+    "price": 29.50,
+    "description": "Set of 3 modern ceramic vases."
+  },
+  {
+    "productId": "HGS-1003",
+    "title": "Oak Bookshelf",
+    "price": 120.00,
+    "description": "5-tier solid oak bookshelf for living rooms."
+  },
+  {
+    "productId": "HGS-1004",
+    "title": "Woven Laundry Basket",
+    "price": 34.25,
+    "description": "Handmade wicker laundry basket with lid."
+  },
+  {
+    "productId": "HGS-1005",
+    "title": "Adjustable Desk Lamp",
+    "price": 27.75,
+    "description": "LED desk lamp with adjustable brightness."
+  },
+  {
+    "productId": "HGS-1006",
+    "title": "Cozy Throw Blanket",
+    "price": 18.49,
+    "description": "Soft knitted throw blanket for sofas and beds."
+  },
+  {
+    "productId": "HGS-1007",
+    "title": "Decorative Wall Mirror",
+    "price": 65.00,
+    "description": "Round mirror with golden metal frame."
+  },
+  {
+    "productId": "HGS-1008",
+    "title": "Marble Cheese Board",
+    "price": 23.99,
+    "description": "Elegant marble cheese and charcuterie board."
+  },
+  {
+    "productId": "HGS-1009",
+    "title": "Bamboo Cutting Board",
+    "price": 14.99,
+    "description": "Eco-friendly bamboo cutting board set."
+  },
+  {
+    "productId": "HGS-1010",
+    "title": "Minimalist Floor Lamp",
+    "price": 79.95,
+    "description": "Tall black floor lamp with fabric shade."
+  },
+  {
+    "productId": "HGS-1011",
+    "title": "Faux Fur Rug",
+    "price": 58.20,
+    "description": "Ultra-soft faux fur area rug, 4x6 feet."
+  },
+  {
+    "productId": "HGS-1012",
+    "title": "Porcelain Dinner Plates",
+    "price": 42.60,
+    "description": "Set of 6 white porcelain dinner plates."
+  },
+  {
+    "productId": "HGS-1013",
+    "title": "Glass Storage Jars",
+    "price": 19.80,
+    "description": "Set of 4 airtight glass kitchen storage jars."
+  },
+  {
+    "productId": "HGS-1014",
+    "title": "Velvet Cushion Covers",
+    "price": 25.00,
+    "description": "Pack of 2 soft velvet cushion covers."
+  },
+  {
+    "productId": "HGS-1015",
+    "title": "Iron Candle Holder",
+    "price": 17.45,
+    "description": "Black iron candle holder for table decor."
+  },
+  {
+    "productId": "HGS-1016",
+    "title": "Terracotta Plant Pot",
+    "price": 12.75,
+    "description": "Medium terracotta pot for indoor plants."
+  },
+  {
+    "productId": "HGS-1017",
+    "title": "Modern End Table",
+    "price": 89.99,
+    "description": "Round side table with metal legs."
+  },
+  {
+    "productId": "HGS-1018",
+    "title": "Kitchen Utensil Set",
+    "price": 38.95,
+    "description": "Silicone kitchen utensils with wooden handles."
+  },
+  {
+    "productId": "HGS-1019",
+    "title": "Wall-Mounted Coat Rack",
+    "price": 33.00,
+    "description": "Wood and metal coat rack with 5 hooks."
+  },
+  {
+    "productId": "HGS-1020",
+    "title": "Stainless Steel Mixing Bowls",
+    "price": 44.90,
+    "description": "Set of 5 nesting stainless steel bowls."
+  },
+  {
+    "productId": "HGS-1021",
+    "title": "Artistic Table Lamp",
+    "price": 69.40,
+    "description": "Unique design table lamp with ceramic base."
+  },
+  {
+    "productId": "HGS-1022",
+    "title": "Floral Duvet Cover Set",
+    "price": 58.10,
+    "description": "King size duvet cover with floral pattern."
+  },
+  {
+    "productId": "HGS-1023",
+    "title": "Handwoven Jute Rug",
+    "price": 96.80,
+    "description": "Natural fiber handwoven jute rug, 5x8 feet."
+  },
+  {
+    "productId": "HGS-1024",
+    "title": "Wall Art Canvas Set",
+    "price": 73.00,
+    "description": "3-piece abstract wall art canvas set."
+  },
+  {
+    "productId": "HGS-1025",
+    "title": "Floating Wall Shelves",
+    "price": 49.99,
+    "description": "Set of 3 floating wooden wall shelves."
+  },
+  {
+    "productId": "HGS-1026",
+    "title": "Non-stick Frying Pan",
+    "price": 21.60,
+    "description": "10-inch non-stick frying pan with handle."
+  },
+  {
+    "productId": "HGS-1027",
+    "title": "Plush Bath Towels",
+    "price": 32.25,
+    "description": "Set of 4 luxury plush bath towels."
+  },
+  {
+    "productId": "HGS-1028",
+    "title": "Wooden Serving Tray",
+    "price": 26.90,
+    "description": "Rustic wooden tray with metal handles."
+  },
+  {
+    "productId": "HGS-1029",
+    "title": "Rattan Pendant Light",
+    "price": 119.00,
+    "description": "Handcrafted rattan pendant ceiling light."
+  },
+  {
+    "productId": "HGS-1030",
+    "title": "Modern Wall Hooks",
+    "price": 15.75,
+    "description": "Set of 5 colorful modern wall hooks."
+  },
+  {
+    "productId": "HGS-1031",
+    "title": "Glass Coffee Table",
+    "price": 135.00,
+    "description": "Modern round glass top coffee table."
+  },
+  {
+    "productId": "HGS-1032",
+    "title": "Silk Table Runner",
+    "price": 22.50,
+    "description": "Elegant silk table runner, 70 inches long."
+  },
+  {
+    "productId": "HGS-1033",
+    "title": "Metal Bookends",
+    "price": 18.35,
+    "description": "Decorative metal bookends for shelves."
+  },
+  {
+    "productId": "HGS-1034",
+    "title": "Classic Alarm Clock",
+    "price": 24.95,
+    "description": "Retro twin bell analog alarm clock."
+  },
+  {
+    "productId": "HGS-1035",
+    "title": "Cotton Kitchen Towels",
     "price": 19.99,
-    "description": "Golden Photo Frame 6x6"
-
+    "description": "Pack of 6 striped cotton kitchen towels."
+  },
+  {
+    "productId": "HGS-1036",
+    "title": "Hanging Planters",
+    "price": 28.75,
+    "description": "Set of 2 ceramic hanging planters."
+  },
+  {
+    "productId": "HGS-1037",
+    "title": "Modern TV Stand",
+    "price": 140.00,
+    "description": "Low-profile TV stand with storage."
+  },
+  {
+    "productId": "HGS-1038",
+    "title": "Wicker Patio Chair",
+    "price": 130.99,
+    "description": "Outdoor wicker chair with cushion."
+  },
+  {
+    "productId": "HGS-1039",
+    "title": "Bamboo Shoe Rack",
+    "price": 39.99,
+    "description": "2-tier bamboo shoe organizer rack."
+  },
+  {
+    "productId": "HGS-1040",
+    "title": "Stainless Steel Water Bottle",
+    "price": 17.45,
+    "description": "Insulated water bottle, 750ml capacity."
+  },
+  {
+    "productId": "HGS-1041",
+    "title": "Soft Bed Sheets",
+    "price": 54.30,
+    "description": "Queen size 4-piece soft cotton bed sheet set."
+  },
+  {
+    "productId": "HGS-1042",
+    "title": "Decorative Pillow Set",
+    "price": 36.70,
+    "description": "Set of 4 boho decorative pillows."
+  },
+  {
+    "productId": "HGS-1043",
+    "title": "Hanging Wall Organizer",
+    "price": 25.50,
+    "description": "Canvas hanging wall organizer with pockets."
+  },
+  {
+    "productId": "HGS-1044",
+    "title": "Portable Clothes Rack",
+    "price": 59.95,
+    "description": "Adjustable portable clothes rack on wheels."
+  },
+  {
+    "productId": "HGS-1045",
+    "title": "Ceramic Soap Dispenser",
+    "price": 16.20,
+    "description": "Elegant ceramic soap dispenser for bathroom."
+  },
+  {
+    "productId": "HGS-1046",
+    "title": "LED Vanity Mirror",
+    "price": 74.99,
+    "description": "Touch sensor LED makeup vanity mirror."
+  },
+  {
+    "productId": "HGS-1047",
+    "title": "Kitchen Storage Bins",
+    "price": 30.00,
+    "description": "Stackable plastic kitchen storage bins."
+  },
+  {
+    "productId": "HGS-1048",
+    "title": "Wall Clock with Pendulum",
+    "price": 82.00,
+    "description": "Classic wooden wall clock with pendulum."
+  },
+  {
+    "productId": "HGS-1049",
+    "title": "Handmade Macrame Wall Hanging",
+    "price": 42.00,
+    "description": "Large boho macrame wall hanging decor."
+  },
+  {
+    "productId": "HGS-1050",
+    "title": "Foldable Storage Ottoman",
+    "price": 45.99,
+    "description": "Fabric ottoman with storage compartment."
   }
 ]

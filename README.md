@@ -1,5 +1,25 @@
 # java-coi-reactive-spring-boot
 
+## Case Study
+
+We are working with the order management system for a household goods store called Baz and Daz Supplies
+
+They have distributed systems for;
+- Order Management
+- Inventory Management
+- Customer Service
+- Product Catalogue
+
+The business owners are looking to work with the data they have collected for reporting purposes
+
+Different teams in the business require different reports
+
+Sales Report
+Inventory Report
+Customer Report
+
+We have been tasked with collecting the data and generating reporting for the different teams.
+
 
 ## Case Study - Real Time Data Aggregation
 We will be pulling data from 3 data sources to create an aggregated view of sales/order information for the business.

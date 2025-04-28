@@ -4,9 +4,11 @@ import com.javacoi.reactive_java_demo.client.CustomerClient;
 import com.javacoi.reactive_java_demo.client.InventoryClient;
 import com.javacoi.reactive_java_demo.client.OrderClient;
 import com.javacoi.reactive_java_demo.client.ProductClient;
+import com.javacoi.reactive_java_demo.exceptions.InventoryNotFoundException;
 import com.javacoi.reactive_java_demo.model.Sales;
 import com.javacoi.reactive_java_demo.model.SalesReport;
 import com.javacoi.reactive_java_demo.pojo.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class ReportingService {
 
@@ -47,14 +50,19 @@ public class ReportingService {
         for (Order order : orders){
             for (OrderItems orderItem: order.orderItems()){
                 String sku = orderItem.sku();
-                Inventory inventory = inventoryClient.getInventory(sku);
-                String productId = inventory.productId();
-                if (productSales.containsKey(productId)){
-                    Integer currentValue = productSales.get(productId);
-                    Integer newValue = currentValue + orderItem.quantity();
-                    productSales.replace(productId, newValue);
-                } else {
-                    productSales.put(productId, orderItem.quantity());
+                try {
+
+                    Inventory inventory = inventoryClient.getInventory(sku);
+                    String productId = inventory.productId();
+                    if (productSales.containsKey(productId)) {
+                        Integer currentValue = productSales.get(productId);
+                        Integer newValue = currentValue + orderItem.quantity();
+                        productSales.replace(productId, newValue);
+                    } else {
+                        productSales.put(productId, orderItem.quantity());
+                    }
+                } catch (InventoryNotFoundException e){
+                    log.warn("inventory not found:" + sku);
                 }
             }
         }
@@ -77,7 +85,7 @@ public class ReportingService {
         // TODO - build inventory report to identify how much items to order in the next delivery
         // TODO - update below to get a list of all orders and detail how many items have been sold and how much is in inventory
         Inventory inventory = inventoryClient.getInventory("0000-111-222");
-        // TODO - itereate through the orders and total how SKU have been sold
+        // TODO - iterate through the orders and total how SKU have been sold
         // TODO - iterate through new SKU map and build inventory report using the current inventory data
         // TODO - build InventoryReport Object.
         return inventory.productId();
