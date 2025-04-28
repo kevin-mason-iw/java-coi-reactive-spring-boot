@@ -32,17 +32,17 @@ public class ReportingService {
         this.inventoryClient = inventoryClient;
     }
 
-    public String buildManagementReport(){
+    public String buildManagementReport() {
         // TODO - build management report to identify most profitable customer, customer name, email, total spent
         List<Customer> customers = customerClient.getCustomers();
         // TODO - iterate through all orders and order by customerID
         // TODO - order though new list and get customer details and
         // TODO - build the ManagementReport object
-        String s = customers.getFirst().firstName();
+        String s = customers.get(0).firstName();
         return s;
     }
 
-    public SalesReport buildSalesReport(){
+    public SalesReport buildSalesReport() {
         // TODO - build sales report to detail what the top sellers are, include total sold, product name, total revenue
         // TODO - Iterate through all orders and order by the SKU with highest total revenue
         Map<String, Integer> productSales = new HashMap<>();
