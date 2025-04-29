@@ -1,6 +1,7 @@
 package com.coi.workshop.controller;
 
 import com.coi.workshop.model.Sales;
+import com.coi.workshop.model.report.InventoryReport;
 import com.coi.workshop.service.ReportingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,9 @@ public class ReportingController {
     }
 
     @GetMapping(path = "/inventory")
-    public ResponseEntity<String> getInventoryReport() {
-        String inventoryReport = reportingService.buildInventoryReport();
-        return new ResponseEntity<>(inventoryReport, HttpStatus.OK);
+    public ResponseEntity<List<InventoryReport>> getInventoryReport() {
+        List<InventoryReport> inventoryReports = reportingService.buildInventoryReport();
+        return new ResponseEntity<>(inventoryReports, HttpStatus.OK);
     }
 
     @GetMapping(path = "/customer")

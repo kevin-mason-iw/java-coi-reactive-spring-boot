@@ -11,6 +11,7 @@ import com.coi.workshop.model.Sales;
 import com.coi.workshop.model.Inventory;
 import com.coi.workshop.model.Order;
 import com.coi.workshop.model.Product;
+import com.coi.workshop.model.report.InventoryReport;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -95,13 +96,37 @@ public class ReportingService {
      * TASK 1.create an inventory report
      * @return Inventory
      */
-    public String buildInventoryReport() {
-        // TODO - build inventory report to identify how much items to order in the next delivery
-        // TODO - update below to get a list of all orders and detail how many items have been sold and how much is in inventory
-        Inventory inventory = inventoryClient.getSku("9012-880-772");
-        // TODO - iterate through the orders and total how SKU have been sold
-        // TODO - iterate through new SKU map and build inventory report using the current inventory data
-        // TODO - build Inventory Report object
-        return "inventory report" + inventory.toString();
+    public List<InventoryReport> buildInventoryReport() {
+        List<Order> orderList = orderClient.getAllOrders();
+
+        Map<String, Integer> itemsSold = new HashMap<>();
+
+        for (Order order : orderList){
+            for (OrderItems orderItem : order.orderItems()){
+                String sku = orderItem.sku();
+                int quantity = orderItem.quantity();
+                if (itemsSold.containsKey(sku)){
+                    Integer currentSold = itemsSold.get(sku);
+                    Integer updatedSold = currentSold + quantity;
+                    itemsSold.replace(sku, updatedSold);
+                } else {
+                    itemsSold.put(sku, quantity);
+                }
+            }
+        }
+
+        List<InventoryReport> inventoryReportList = new ArrayList<>();
+        for (Map.Entry<String, Integer> itemSale : itemsSold.entrySet()) {
+            String sku = itemSale.getKey();
+            Integer totalSold = itemSale.getValue();
+
+            Inventory inventoryItem = inventoryClient.getSku(sku);
+            Product product = productClient.getProduct(inventoryItem.productId());
+
+            InventoryReport inventoryReport = new InventoryReport(sku, product.title(), totalSold, inventoryItem.stockAmount());
+            inventoryReportList.add(inventoryReport);
+        }
+
+        return inventoryReportList;
     }
 }
