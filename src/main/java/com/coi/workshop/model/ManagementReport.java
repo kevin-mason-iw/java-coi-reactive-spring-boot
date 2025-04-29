@@ -1,4 +1,4 @@
-package com.javacoi.reactive_java_demo.model;
+package com.coi.workshop.model;
 
 import java.time.LocalDateTime;
 

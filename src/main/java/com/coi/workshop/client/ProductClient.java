@@ -1,9 +1,9 @@
-package com.javacoi.reactive_java_demo.client;
+package com.coi.workshop.client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.javacoi.reactive_java_demo.exceptions.ProductNotFoundException;
-import com.javacoi.reactive_java_demo.pojo.Product;
+import com.coi.workshop.exceptions.ProductNotFoundException;
+import com.coi.workshop.pojo.Product;
 import org.springframework.stereotype.Service;
 
 import java.io.File;

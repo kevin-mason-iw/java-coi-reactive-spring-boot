@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.javacoi</groupId>
-	<artifactId>reactive-java-demo</artifactId>
+	<artifactId>reactive-java-workshop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>reactive-java-demo</name>
+	<name>reactive-java-workshop</name>
 	<description>Demo of reactive java</description>
 	<url/>
 	<licenses>

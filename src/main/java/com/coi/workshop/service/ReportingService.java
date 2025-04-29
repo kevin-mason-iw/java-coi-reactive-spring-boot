@@ -1,13 +1,17 @@
-package com.javacoi.reactive_java_demo.service;
+package com.coi.workshop.service;
 
-import com.javacoi.reactive_java_demo.client.CustomerClient;
-import com.javacoi.reactive_java_demo.client.InventoryClient;
-import com.javacoi.reactive_java_demo.client.OrderClient;
-import com.javacoi.reactive_java_demo.client.ProductClient;
-import com.javacoi.reactive_java_demo.exceptions.InventoryNotFoundException;
-import com.javacoi.reactive_java_demo.model.Sales;
-import com.javacoi.reactive_java_demo.model.SalesReport;
-import com.javacoi.reactive_java_demo.pojo.*;
+import com.coi.workshop.client.CustomerClient;
+import com.coi.workshop.client.InventoryClient;
+import com.coi.workshop.client.OrderClient;
+import com.coi.workshop.client.ProductClient;
+import com.coi.workshop.exceptions.InventoryNotFoundException;
+import com.coi.workshop.model.Sales;
+import com.coi.workshop.model.SalesReport;
+import com.coi.workshop.pojo.Customer;
+import com.coi.workshop.pojo.Inventory;
+import com.coi.workshop.pojo.Order;
+import com.coi.workshop.pojo.OrderItems;
+import com.coi.workshop.pojo.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -47,8 +51,8 @@ public class ReportingService {
         // TODO - Iterate through all orders and order by the SKU with highest total revenue
         Map<String, Integer> productSales = new HashMap<>();
         List<Order> orders = orderClient.getOrders();
-        for (Order order : orders){
-            for (OrderItems orderItem: order.orderItems()){
+        for (Order order : orders) {
+            for (OrderItems orderItem: order.orderItems()) {
                 String sku = orderItem.sku();
                 try {
 
@@ -62,7 +66,7 @@ public class ReportingService {
                         productSales.put(productId, orderItem.quantity());
                     }
                 } catch (InventoryNotFoundException e){
-                    log.warn("inventory not found:" + sku);
+                    log.warn("inventory not found: {}", sku);
                 }
             }
         }

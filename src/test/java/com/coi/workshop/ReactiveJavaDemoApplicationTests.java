@@ -1,4 +1,4 @@
-package com.javacoi.reactive_java_demo;
+package com.coi.workshop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

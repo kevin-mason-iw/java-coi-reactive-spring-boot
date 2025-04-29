@@ -1,4 +1,4 @@
-package com.javacoi.reactive_java_demo;
+package com.coi.workshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

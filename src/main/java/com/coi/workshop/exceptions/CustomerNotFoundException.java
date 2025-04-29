@@ -1,4 +1,4 @@
-package com.javacoi.reactive_java_demo.exceptions;
+package com.coi.workshop.exceptions;
 
 public class CustomerNotFoundException extends RuntimeException {
     public CustomerNotFoundException(String message) {
