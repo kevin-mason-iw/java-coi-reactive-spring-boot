@@ -22,7 +22,7 @@ public class ReportingController {
 
     @GetMapping(path = "/sales")
     public ResponseEntity<List<Sales>> getSalesReport() {
-        List<Sales> salesReport = reportingService.buildSalesReport();
+        List<Sales> salesReport = reportingService.buildSalesReportAsync();
         return new ResponseEntity<>(salesReport, HttpStatus.OK);
     }
 

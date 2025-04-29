@@ -67,7 +67,7 @@ public class ReportingService {
             }
         }
         List<Sales> salesList = new ArrayList<>();
-        // TODO - Iterate through new list and get the product title for each SKU
+        // iterate through new list and get the product title for each SKU and price
         for (Map.Entry<String, Integer> productSale : productSales.entrySet()) {
             String productId = productSale.getKey();
             Integer totalSold = productSale.getValue();
@@ -80,6 +80,62 @@ public class ReportingService {
 
         salesList.sort((s1, s2) -> Double.compare(s2.totalRevenue(), s1.totalRevenue()));
         return salesList;
+    }
+
+    public List<Sales> buildSalesReportAsync() {
+        Map<String, Integer> productSales = new HashMap<>();
+        List<Order> orders = getOrdersAsync(productSales);
+
+        // Wait for all inventory processing to complete
+        CompletableFuture.allOf(
+            orders.stream()
+                .flatMap(order -> order.orderItems().stream())
+                .map(orderItem -> CompletableFuture.runAsync(() -> {
+                    try {
+                        Inventory inventory = inventoryClient.getSku(orderItem.sku());
+                        String productId = inventory.productId();
+                        synchronized (productSales) {
+                            productSales.merge(productId, orderItem.quantity(), Integer::sum);
+                        }
+                    } catch (InventoryNotFoundException e) {
+                        log.warn("inventory not found: {}", orderItem.sku());
+                    }
+                }))
+                .toArray(CompletableFuture[]::new)
+        ).join();
+
+        // Build sales list asynchronously
+        return productSales.entrySet().stream()
+            .map(productSale -> CompletableFuture.supplyAsync(() -> {
+                String productId = productSale.getKey();
+                Integer totalSold = productSale.getValue();
+                Product product = productClient.getProduct(productId);
+                Double totalSales = product.price() * totalSold;
+                return new Sales(productId, product.title(), totalSold, totalSales);
+            }))
+            .map(CompletableFuture::join)
+            .toList();
+    }
+
+    private List<Order> getOrdersAsync(Map<String, Integer> productSales) {
+        List<Order> orders = orderClient.getAllOrders();
+
+        // Process orders asynchronously
+        orders.forEach(order -> order.orderItems().forEach(orderItem -> {
+            String sku = orderItem.sku();
+            CompletableFuture.runAsync(() -> {
+                try {
+                    Inventory inventory = inventoryClient.getSku(sku);
+                    String productId = inventory.productId();
+                    synchronized (productSales) {
+                        productSales.merge(productId, orderItem.quantity(), Integer::sum);
+                    }
+                } catch (InventoryNotFoundException e) {
+                    log.warn("inventory not found: {}", sku);
+                }
+            });
+        }));
+        return orders;
     }
 
     public String buildCustomerReport() {
