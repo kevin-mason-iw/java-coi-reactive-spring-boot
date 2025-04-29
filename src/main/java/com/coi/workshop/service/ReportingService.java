@@ -13,6 +13,8 @@ import com.coi.workshop.model.Order;
 import com.coi.workshop.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -136,6 +138,29 @@ public class ReportingService {
             });
         }));
         return orders;
+    }
+
+    public Flux<Sales> buildSalesReportReactive() {
+        return Flux.defer(() -> Flux.fromIterable(orderClient.getAllOrders())) // Wrap blocking call
+            .flatMap(order -> Flux.fromIterable(order.orderItems()))
+            .flatMap(orderItem -> Mono.fromCallable(() -> inventoryClient.getSku(orderItem.sku())) // Wrap blocking call
+                .map(inventory -> Map.entry(inventory.productId(), orderItem.quantity()))
+                .onErrorResume(e -> {
+                    log.warn("Inventory not found: {}", orderItem.sku());
+                    return Mono.empty();
+                })
+            )
+            .groupBy(Map.Entry::getKey, Map.Entry::getValue)
+            .flatMap(groupedFlux -> groupedFlux.reduce(0, Integer::sum)
+                .map(totalSold -> Map.entry(groupedFlux.key(), totalSold))
+            )
+            .flatMap(productSale -> Mono.fromCallable(() -> productClient.getProduct(productSale.getKey())) // Wrap blocking call
+                .map(product -> {
+                    Integer totalSold = productSale.getValue();
+                    Double totalRevenue = product.price() * totalSold;
+                    return new Sales(productSale.getKey(), product.title(), totalSold, totalRevenue);
+                })
+            );
     }
 
     public String buildCustomerReport() {

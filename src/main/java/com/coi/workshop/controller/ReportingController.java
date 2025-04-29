@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class ReportingController {
     public ResponseEntity<List<Sales>> getSalesReport() {
         List<Sales> salesReport = reportingService.buildSalesReportAsync();
         return new ResponseEntity<>(salesReport, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/sales-reactive", produces = "application/json")
+    public Flux<Sales> getSalesReportReactive() {
+        return reportingService.buildSalesReportReactive();
     }
 
     @GetMapping(path = "/inventory")
