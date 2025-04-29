@@ -49,24 +49,24 @@ public class ReportingService {
         // TODO - Iterate through all orders and order by the SKU with highest total revenue
         Map<String, Integer> productSales = new HashMap<>();
         List<Order> orders = orderClient.getAllOrders();
+        List<CompletableFuture<Void>> cfs = new ArrayList<>();
         for (Order order : orders) {
             for (OrderItems orderItem : order.orderItems()) {
                 String sku = orderItem.sku();
-                try {
-                    Inventory inventory = inventoryClient.getSku(sku);
-                    String productId = inventory.productId();
-                    if (productSales.containsKey(productId)) {
-                        Integer currentValue = productSales.get(productId);
-                        Integer newValue = currentValue + orderItem.quantity();
-                        productSales.replace(productId, newValue);
-                    } else {
-                        productSales.put(productId, orderItem.quantity());
+                cfs.add(CompletableFuture.runAsync(() -> {
+                    try {
+                        Inventory inventory = inventoryClient.getSku(sku);
+                        String productId = inventory.productId();
+                        synchronized (productSales) {
+                            productSales.merge(productId, orderItem.quantity(), Integer::sum);
+                        }
+                    } catch (InventoryNotFoundException e) {
+                        log.warn("inventory not found: {}", sku);
                     }
-                } catch (InventoryNotFoundException e) {
-                    log.warn("inventory not found: {}", sku);
-                }
+                }));
             }
         }
+        cfs.forEach(CompletableFuture::join);
         List<Sales> salesList = new ArrayList<>();
         // TODO - Iterate through new list and get the product title for each SKU
         for (Map.Entry<String, Integer> productSale : productSales.entrySet()) {
