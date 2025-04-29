@@ -1,4 +1,4 @@
-package com.coi.workshop.pojo;
+package com.coi.workshop.model;
 
 import java.time.LocalDateTime;
 import java.util.List;

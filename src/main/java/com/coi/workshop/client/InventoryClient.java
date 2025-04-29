@@ -1,9 +1,10 @@
 package com.coi.workshop.client;
 
+import com.coi.workshop.repository.InventoryRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.coi.workshop.exceptions.InventoryNotFoundException;
-import com.coi.workshop.pojo.Inventory;
+import com.coi.workshop.model.Inventory;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -15,36 +16,21 @@ import java.util.Optional;
 @Service
 public class InventoryClient {
 
-    private final ObjectMapper objectMapper;
+    private final InventoryRepository inventoryRepository;
 
-    public InventoryClient(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
+    public InventoryClient(InventoryRepository inventoryRepository) {
+        this.inventoryRepository = inventoryRepository;
     }
 
-    public Inventory getInventory(String sku){
-        Optional<Inventory> inventoryOptional = getAllInventory().stream().filter(inventory -> inventory.sku().equals(sku)).findFirst();
+    public Inventory getSku(String sku) {
+        Optional<Inventory> inventoryOptional = inventoryRepository.getAllInventory().stream()
+            .filter(inventory -> inventory.sku().equals(sku))
+            .findFirst();
 
         if (inventoryOptional.isEmpty()){
             throw new InventoryNotFoundException("SKU not found in inventory.");
         } else {
             return inventoryOptional.get();
         }
-    }
-
-    public List<Inventory> getAllInventory(){
-        String jsonFile = "src/main/resources/data/inventory.json";
-        List<Inventory> inventoryList;
-        try {
-            inventoryList = loadInventoryData(jsonFile);
-        } catch (IOException e) {
-            inventoryList = Collections.emptyList();
-        }
-        return inventoryList;
-    }
-
-
-    public List<Inventory> loadInventoryData(String jsonFile) throws IOException {
-        return objectMapper.readValue(new File(jsonFile), new TypeReference<>() {
-        });
     }
 }

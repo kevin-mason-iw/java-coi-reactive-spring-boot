@@ -1,4 +1,4 @@
-package com.coi.workshop.pojo;
+package com.coi.workshop.model;
 
 public record Product(String productId, String title, Double price, String description) {
 }

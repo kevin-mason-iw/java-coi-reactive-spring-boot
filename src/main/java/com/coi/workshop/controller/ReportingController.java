@@ -1,6 +1,7 @@
 package com.coi.workshop.controller;
 
-import com.coi.workshop.model.SalesReport;
+import com.coi.workshop.model.report.InventoryReport;
+import com.coi.workshop.model.report.SalesReport;
 import com.coi.workshop.service.ReportingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,22 +21,20 @@ public class ReportingController {
 
     @GetMapping(path = "/sales")
     public ResponseEntity<SalesReport> getSalesReport() {
-        // TODO - make call to service to get report data. Return data as JSON
         SalesReport salesReport = reportingService.buildSalesReport();
         return new ResponseEntity<>(salesReport, HttpStatus.OK);
     }
 
     @GetMapping(path = "/inventory")
-    public String getInventoryReport(){
-        // TODO - make call to service to get report data. Return data as JSON
-        String s = reportingService.buildInventoryReport();
-        return s;
+    public ResponseEntity<String> getInventoryReport() {
+        String inventoryReport = reportingService.buildInventoryReport();
+        return new ResponseEntity<>(inventoryReport, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/management")
-    public String getManagementReport(){
-        String s = reportingService.buildManagementReport();
-        return s;
+    @GetMapping(path = "/customer")
+    public ResponseEntity<String> getCustomerReport() {
+        String s = reportingService.buildCustomerReport();
+        return new ResponseEntity<>(s, HttpStatus.OK);
     }
 
 }

@@ -1,9 +1,10 @@
 package com.coi.workshop.client;
 
+import com.coi.workshop.repository.OrderRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.coi.workshop.exceptions.OrderNotFoundException;
-import com.coi.workshop.pojo.Order;
+import com.coi.workshop.model.Order;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -15,36 +16,25 @@ import java.util.Optional;
 @Service
 public class OrderClient {
 
-    private final ObjectMapper objectMapper;
+    private final OrderRepository orderRepository;
 
-    public OrderClient(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
+    public OrderClient(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
     }
 
-    public Order getOrder(String orderNumber){
-        Optional<Order> orderOptional = getOrders().stream().filter(order -> order.OrderNumber().equals(orderNumber)).findFirst();
+    public List<Order> getAllOrders() {
+        return orderRepository.getAllOrders();
+    }
 
-        if (orderOptional.isEmpty()){
+    public Order getOrder(String orderNumber) {
+        Optional<Order> orderOptional = orderRepository.getAllOrders().stream()
+            .filter(order -> order.OrderNumber().equals(orderNumber))
+            .findFirst();
+
+        if (orderOptional.isEmpty()) {
             throw new OrderNotFoundException("Order Not Found");
         } else {
             return orderOptional.get();
         }
-    }
-
-    public List<Order> getOrders(){
-        String jsonFile = "src/main/resources/data/orders.json";
-        List<Order> orders;
-        try {
-            orders = loadOrderData(jsonFile);
-        } catch (IOException e) {
-            orders = Collections.emptyList();
-        }
-        return orders;
-    }
-
-
-    public List<Order> loadOrderData(String jsonFile) throws IOException {
-        return objectMapper.readValue(new File(jsonFile), new TypeReference<>() {
-        });
     }
 }
