@@ -23,18 +23,16 @@ public class OrderClient {
     }
 
     public List<Order> getAllOrders() {
+        simulateDelay();
         return orderRepository.getAllOrders();
     }
 
-    public Order getOrder(String orderNumber) {
-        Optional<Order> orderOptional = orderRepository.getAllOrders().stream()
-            .filter(order -> order.OrderNumber().equals(orderNumber))
-            .findFirst();
-
-        if (orderOptional.isEmpty()) {
-            throw new OrderNotFoundException("Order Not Found");
-        } else {
-            return orderOptional.get();
+    private void simulateDelay() {
+        try {
+            Thread.sleep((long) (Math.random() * 10)); // Simulate a random delay up to 10ms
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Restore interrupted status
+            throw new RuntimeException("Thread was interrupted", e);
         }
     }
 }

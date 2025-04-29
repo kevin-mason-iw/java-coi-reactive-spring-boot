@@ -17,6 +17,7 @@ public class ProductClient {
     }
 
     public Product getProduct(String productId) {
+        simulateDelay();
         Optional<Product> first = productRepository.getAllProducts().stream()
             .filter(product -> product.productId().equals(productId))
             .findFirst();
@@ -25,6 +26,15 @@ public class ProductClient {
             throw new ProductNotFoundException("Product Not Found");
         } else {
             return first.get();
+        }
+    }
+
+    private void simulateDelay() {
+        try {
+            Thread.sleep((long) (Math.random() * 10)); // Simulate a random delay up to 10ms
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Restore interrupted status
+            throw new RuntimeException("Thread was interrupted", e);
         }
     }
 }

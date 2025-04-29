@@ -23,6 +23,7 @@ public class InventoryClient {
     }
 
     public Inventory getSku(String sku) {
+        simulateDelay();
         Optional<Inventory> inventoryOptional = inventoryRepository.getAllInventory().stream()
             .filter(inventory -> inventory.sku().equals(sku))
             .findFirst();
@@ -31,6 +32,15 @@ public class InventoryClient {
             throw new InventoryNotFoundException("SKU not found in inventory.");
         } else {
             return inventoryOptional.get();
+        }
+    }
+
+    private void simulateDelay() {
+        try {
+            Thread.sleep((long) (Math.random() * 10)); // Simulate a random delay up to 10ms
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Restore interrupted status
+            throw new RuntimeException("Thread was interrupted", e);
         }
     }
 }

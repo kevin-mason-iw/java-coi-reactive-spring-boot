@@ -6,12 +6,10 @@ import com.coi.workshop.client.OrderClient;
 import com.coi.workshop.client.ProductClient;
 import com.coi.workshop.exceptions.InventoryNotFoundException;
 import com.coi.workshop.model.Customer;
+import com.coi.workshop.model.OrderItems;
 import com.coi.workshop.model.Sales;
-import com.coi.workshop.model.report.InventoryReport;
-import com.coi.workshop.model.report.SalesReport;
 import com.coi.workshop.model.Inventory;
 import com.coi.workshop.model.Order;
-import com.coi.workshop.model.OrderItems;
 import com.coi.workshop.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Service
@@ -40,7 +39,7 @@ public class ReportingService {
         this.inventoryClient = inventoryClient;
     }
 
-    public SalesReport buildSalesReport() {
+    public List<Sales> buildSalesReport() {
         // TODO - build sales report to detail what the top sellers are, include total sold, product name, total revenue
         // TODO - Iterate through all orders and order by the SKU with highest total revenue
         Map<String, Integer> productSales = new HashMap<>();
@@ -74,7 +73,9 @@ public class ReportingService {
             Sales sales = new Sales(productId, product.title(), totalSold, totalSales);
             salesList.add(sales);
         }
-        return new SalesReport(salesList);
+
+        salesList.sort((s1, s2) -> Double.compare(s2.totalRevenue(), s1.totalRevenue()));
+        return salesList;
     }
 
     public String buildCustomerReport() {

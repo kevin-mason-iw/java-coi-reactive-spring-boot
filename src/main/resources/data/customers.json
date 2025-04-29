@@ -1,5 +1,12 @@
 [
   {
+    "id": "CUST-1000",
+    "firstName": "Kevin",
+    "lastName": "Mason",
+    "email": "kevin.mason@testemail.com",
+    "telephone": "011100234000"
+  },
+  {
     "id": "CUST-1001",
     "firstName": "Alice",
     "lastName": "Johnson",

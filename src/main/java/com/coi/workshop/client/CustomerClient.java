@@ -17,6 +17,7 @@ public class CustomerClient {
     }
 
     public Customer getCustomer(String customerId) {
+        simulateDelay();
         Optional<Customer> customerOptional = customerRepository.getAllCustomers().stream()
             .filter(customer -> customer.id().equals(customerId))
             .findFirst();
@@ -25,6 +26,15 @@ public class CustomerClient {
             throw new CustomerNotFoundException("Customer Not Found");
         } else {
             return customerOptional.get();
+        }
+    }
+
+    private void simulateDelay() {
+        try {
+            Thread.sleep((long) (Math.random() * 10)); // Simulate a random delay up to 10ms
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Restore interrupted status
+            throw new RuntimeException("Thread was interrupted", e);
         }
     }
 }
