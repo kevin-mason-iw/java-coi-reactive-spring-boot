@@ -1,22 +1,16 @@
 package com.coi.workshop.client;
 
 import com.coi.workshop.repository.OrderRepository;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.coi.workshop.exceptions.OrderNotFoundException;
 import com.coi.workshop.model.Order;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderClient {
 
     private final OrderRepository orderRepository;
+
 
     public OrderClient(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
@@ -25,6 +19,15 @@ public class OrderClient {
     public List<Order> getAllOrders() {
         simulateDelay();
         return orderRepository.getAllOrders();
+    }
+
+    /**
+     * Task 3. Make request to the OrderService using webclient
+     * git clone git@github.com:kevin-mason-iw/java-coi-reactive-order-service.git
+     * return Order
+     */
+    public Order getOrder(String orderNumber){
+        return null;
     }
 
     private void simulateDelay() {

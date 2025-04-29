@@ -39,6 +39,10 @@ public class ReportingService {
         this.inventoryClient = inventoryClient;
     }
 
+    /**
+     * TASK 2. Sales report is too slow - can this be sped up?
+     * @return
+     */
     public List<Sales> buildSalesReport() {
         // TODO - build sales report to detail what the top sellers are, include total sold, product name, total revenue
         // TODO - Iterate through all orders and order by the SKU with highest total revenue
@@ -87,6 +91,10 @@ public class ReportingService {
         return customer.firstName() + " " +  customer.lastName();
     }
 
+    /**
+     * TASK 1.create an inventory report
+     * @return Inventory
+     */
     public String buildInventoryReport() {
         // TODO - build inventory report to identify how much items to order in the next delivery
         // TODO - update below to get a list of all orders and detail how many items have been sold and how much is in inventory
